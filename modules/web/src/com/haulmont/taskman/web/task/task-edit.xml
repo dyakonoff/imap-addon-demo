@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd" caption="msg://editorCaption" focusComponent="form"
+        messagesPack="com.haulmont.taskman.web.task">
+    <data>
+        <instance id="taskDc" class="com.haulmont.taskman.entity.Task" view="task-view">
+            <loader/>
+            <collection id="messagesDc" property="messages"/>
+        </instance>
+    </data>
+    <dialogMode height="600" width="800"/>
+    <layout expand="split" spacing="true">
+        <split id="split" orientation="horizontal" width="100%">
+            <vbox spacing="true" margin="true" expand="contentBox" height="100%">
+                <form id="form" dataContainer="taskDc" width="100%">
+                    <column width="100%">
+                        <textField id="numberField" property="number" editable="false"/>
+                        <textField id="reporterEmailField" property="reporterEmail"/>
+                        <lookupField id="stateField" property="state"/>
+                        <textField id="assignedTo" property="assignee" visible="false" editable="false"/>
+                        <textField id="subjectField" property="subject"/>
+                    </column>
+                </form>
+                <groupBox id="contentBox" expand="contentField">
+                    <label id="contentField" htmlEnabled="true" property="content" dataContainer="taskDc"/>
+                </groupBox>
+            </vbox>
+            <vbox spacing="true" margin="true" height="100%">
+                <table id="messagesTable" dataContainer="messagesDc" width="100%" height="100%">
+                    <actions>
+                        <action id="create" openType="DIALOG" type="create"/>
+                        <action id="edit" openType="DIALOG" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="createTs"/>
+                        <column id="direction"/>
+                        <column id="reporter"/>
+                        <column id="subject" maxTextLength="300"/>
+                    </columns>
+                    <buttonsPanel id="buttonsPanel" alwaysVisible="true">
+                        <button id="createBtn" action="messagesTable.create" caption="msg://reply"/>
+                        <button id="editBtn" action="messagesTable.edit"/>
+                        <button id="removeBtn" action="messagesTable.remove"/>
+                    </buttonsPanel>
+                </table>
+            </vbox>
+        </split>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

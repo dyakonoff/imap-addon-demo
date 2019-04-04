@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="taskMessagesTable"
+        messagesPack="com.haulmont.taskman.web.taskmessage">
+    <data readOnly="true">
+        <collection id="taskMessagesDc"
+                    class="com.haulmont.taskman.entity.TaskMessage"
+                    view="_local">
+            <loader id="taskMessagesDl">
+                <query>
+                    <![CDATA[select e from taskman_TaskMessage e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="taskMessagesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="taskMessagesTable"
+                dataLoader="taskMessagesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="taskMessagesTable"
+                    width="100%"
+                    dataContainer="taskMessagesDc">
+            <actions>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="reporter"/>
+                <column id="direction"/>
+                <column id="subject"/>
+                <column id="content"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="editBtn" action="taskMessagesTable.edit"/>
+                <button id="removeBtn" action="taskMessagesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

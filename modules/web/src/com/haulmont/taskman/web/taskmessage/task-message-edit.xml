@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd" caption="msg://editorCaption" focusComponent="form"
+        messagesPack="com.haulmont.taskman.web.taskmessage">
+    <data>
+        <instance id="taskMessageDc" class="com.haulmont.taskman.entity.TaskMessage" view="_local">
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="400" width="800" forceDialog="true"/>
+    <layout spacing="true" height="100%" width="100%" expand="spacer1">
+        <form id="form" dataContainer="taskMessageDc" width="100%">
+            <column width="100%">
+                <textField id="reporterField" property="reporter" editable="false"/>
+                <lookupField id="directionField" property="direction" editable="false"/>
+                <textField id="subjectField" property="subject" editable="false"/>
+                <textArea id="contentField" property="content" trim="false"/>
+            </column>
+        </form>
+        <label value="" id="spacer1"/>
+        <hbox id="editActions" spacing="true" width="AUTO">
+            <button action="windowCommitAndClose" align="MIDDLE_LEFT"/>
+            <button action="windowClose" align="MIDDLE_LEFT"/>
+        </hbox>
+    </layout>
+</window>

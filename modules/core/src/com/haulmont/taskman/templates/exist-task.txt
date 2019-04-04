@@ -1,0 +1,13 @@
+Hello,
+
+The task ${task.number} has been updated with new details.
+
+Do not change the subject of this message when replying to it.
+
+Update details:
+=======================================
+${message_content}
+
+=======================================
+Sincerely yours,
+CUBA IMAP addon demo application.

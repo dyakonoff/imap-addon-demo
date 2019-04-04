@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd" caption="msg://browseCaption"
+        focusComponent="tasksTable" messagesPack="com.haulmont.taskman.web.task">
+    <data readOnly="true">
+        <collection id="tasksDc" class="com.haulmont.taskman.entity.Task" view="task-browse-view">
+            <loader id="tasksDl">
+                <query><![CDATA[select e from taskman_Task e]]></query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600" width="800"/>
+    <layout expand="tasksTable" spacing="true">
+        <filter id="filter" applyTo="tasksTable" dataLoader="tasksDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="tasksTable" width="100%" dataContainer="tasksDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="excel" type="excel"/>
+            </actions>
+            <columns>
+                <column id="createTs"/>
+                <column id="number"/>
+                <column id="state"/>
+                <column id="reporterEmail"/>
+                <column id="subject"/>
+                <column id="assignee"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel" alwaysVisible="true">
+                <button id="createBtn" action="tasksTable.create"/>
+                <button id="editBtn" action="tasksTable.edit"/>
+                <button id="removeBtn" action="tasksTable.remove"/>
+                <button id="assign" caption="msg://assign"/>
+                <button id="inProgress" caption="msg://inProgress"/>
+                <button id="close" caption="msg://close"/>
+                <button id="excelBtn" action="tasksTable.excel"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

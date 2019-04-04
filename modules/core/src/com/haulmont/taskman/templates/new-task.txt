@@ -1,0 +1,13 @@
+Hello,
+
+The task ${task.number} has been created.
+
+Do not change the subject of this message when replying to it.
+
+Original message:
+=======================================
+${message_content}
+
+=======================================
+Sincerely yours,
+CUBA IMAP addon demo application.
